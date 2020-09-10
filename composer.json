@@ -1,0 +1,48 @@
+{
+    "name": "awema-pl/module-base-js",
+    "description": ":description",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karol Golec",
+            "email": "karolgolec10@gmail.com",
+            "homepage": "https://github.pl/awema-pl/module-base-js",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "karolgolec10@gmail.com"
+    },
+    "homepage": "https://github.com/awemapl/basejs",
+    "keywords": [
+        "Laravel",
+        "BaseJS"
+    ],
+    "require": {
+        "composer/composer": "^1.8"
+    },
+    "require-dev": [],
+    "autoload": {
+        "psr-4": {
+            "AwemaPL\\BaseJS\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AwemaPL\\BaseJS\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AwemaPL\\BaseJS\\BaseJSServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="TEST_CSRF">
+    <title>AWEMA-core test</title>
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js')
+        const AWEMA_CONFIG = {
+            key: '5cd207e2c94eb723c3307764a5693def',
+            dev: false,
+            lang: {
+                // any lang variable to override default, e.g.:
+                // TIMEOUT_ERROR: 'Превышено время ожидания ответа'
+                TEST_LANG_VAR: 'Test lang variable'
+            }
+        }
+    </script>
+    <style>
+        content-wrapper {
+            display: block; 
+        }
+    </style>
+
+    <!-- scripts -->
+    <script src="/plugins/plugin2.js" async defer></script>
+    <script src="/plugins/plugin1.js" async defer></script>
+    <script src="/plugins/plugin3.js"  async defer></script>
+    <script src="/js/main.js" async defer></script>
+</head>
+
+<body>
+    <content-wrapper tag="main" class="awema-app" store-data="test" :default="{foo:'bar'}">
+        <h1>Test lang variable is:</h1>
+        <pre>{{ $lang.TEST_LANG_VAR }}</pre>
+        <button @click="AWEMA.notify('Test notify')">Notify</button>
+        <button onclick="AWEMA.emit('test', 'test message')">Check test event in console</button>
+        <button @click="AWEMA.ajax({no: 'params'}, 'nowhere')">Fail request</button>
+        <button @click="AWEMA.ajax({no: 'params'}, 'http://httpbin.org/post').then( function(data){ AWEMA.notify('All is OK!') })">Success request</button>
+    </content-wrapper>
+
+    <content-wrapper>
+        {{ $url.urlFromTemplate('http://{ site }&{ page }?{ array }', { site: 'www.site.com', page: 2, array: 'bla' }) }} <br>
+        {{ 'https://google.com?' + $url.stringifyQuery({ site: 'www.site.com', page: '', array: ['bla'] }) }}
+    </content-wrapper>
+
+    <content-wrapper :default="[1,2,3,4]">
+        <pre slot-scope="content">{{content}}</pre>
+    </content-wrapper>
+
+    <!-- test lazy component -->
+    <content-wrapper style="margin-top:150vh" lazy>
+        <pre slot-scope="content">{{ content }}</pre>
+    </content-wrapper>
+
+</body>
+
+</html>

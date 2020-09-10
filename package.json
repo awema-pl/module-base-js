@@ -1,0 +1,63 @@
+{
+    "private": true,
+    "name": "base-js",
+    "version": "1.8.1",
+    "description": "A core module for AWEMA-components.",
+    "author": "AwemaCode (https://www.awema.de/)",
+    "main": "dist/js/main.js",
+    "module": "resources/js/main.js",
+    "files": [
+        "dist/js/main.js"
+    ],
+    "awema-files": [
+        "/js/main.js"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@gitlab.awema.pl:awema-pl/test-core.git"
+    },
+    "scripts": {
+        "start": "npm run watch",
+        "watch": "cross-env NODE_ENV=development gulp",
+        "build": "cross-env NODE_ENV=production gulp",
+        "test": "jest"
+    },
+    "dependencies": {
+        "axios": "^0.19.0",
+        "dayjs": "^1.8.14",
+        "loadjs": "^3.5.5",
+        "urlify": "^0.3.6",
+        "v-tooltip": "^2.0.2",
+        "vue": "^2.6.10",
+        "vue-router": "^3.0.6",
+        "vue-smoothscroll": "^0.2.0",
+        "vuex": "^3.1.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.2.3",
+        "autoprefixer": "^9.4.5",
+        "browser-sync": "^2.26.3",
+        "core-js": "^2.6.2",
+        "cross-env": "^5.2.0",
+        "cssnano": "^4.1.8",
+        "gulp": "^4.0.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-noop": "^1.0.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-rollup": "^2.16.2",
+        "gulp-sourcemaps": "^2.6.4",
+        "jest": "^24.7.1",
+        "postcss-import": "^12.0.1",
+        "rollup": "^0.68.2",
+        "rollup-plugin-babel": "^4.1.0",
+        "rollup-plugin-commonjs": "^9.2.0",
+        "rollup-plugin-json": "^3.1.0",
+        "rollup-plugin-license": "^0.7.0",
+        "rollup-plugin-node-resolve": "^4.0.0",
+        "rollup-plugin-postcss": "^1.6.3",
+        "rollup-plugin-terser": "^4.0.2",
+        "rollup-plugin-vue": "^4.7.2",
+        "vue-template-compiler": "^2.6.10"
+    }
+}
