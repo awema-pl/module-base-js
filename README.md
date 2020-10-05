@@ -1,10 +1,10 @@
 # BaseJS
 
-[![Coverage report](https://repo.pkgkit.com/4GBWO/awema-pl/module-base-js/badges/master/coverage.svg)](https://www.pkgkit.com/)
-[![Build status](https://repo.pkgkit.com/4GBWO/awema-pl/module-base-js/badges/master/build.svg)](https://www.pkgkit.com/)
-[![Composer Ready](https://www.pkgkit.com/4GBWO/awema-pl/module-base-js/status.svg)](https://www.pkgkit.com/)
-[![Downloads](https://www.pkgkit.com/4GBWO/awema-pl/module-base-js/downloads.svg)](https://www.pkgkit.com/)
-[![Last version](https://www.pkgkit.com/4GBWO/awema-pl/module-base-js/version.svg)](https://www.pkgkit.com/)
+[![Coverage report](https://repo.awema.pl/4GBWO/awema-pl/module-base-js/badges/master/coverage.svg)](https://www.awema.pl/)
+[![Build status](https://repo.awema.pl/4GBWO/awema-pl/module-base-js/badges/master/build.svg)](https://www.awema.pl/)
+[![Composer Ready](https://www.awema.pl/4GBWO/awema-pl/module-base-js/status.svg)](https://www.awema.pl/)
+[![Downloads](https://www.awema.pl/4GBWO/awema-pl/module-base-js/downloads.svg)](https://www.awema.pl/)
+[![Last version](https://www.awema.pl/4GBWO/awema-pl/module-base-js/version.svg)](https://www.awema.pl/)
 
 
 This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.

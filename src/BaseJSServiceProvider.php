@@ -3,6 +3,7 @@
 namespace AwemaPL\BaseJS;
 
 use AwemaPL\BaseJS\AwemaProvider;
+use Illuminate\Support\Str;
 
 class BaseJSServiceProvider extends AwemaProvider
 {

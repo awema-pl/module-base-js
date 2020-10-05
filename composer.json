@@ -20,9 +20,9 @@
         "BaseJS"
     ],
     "require": {
-        "composer/composer": "^1.8"
+        "composer/composer": "^1.8",
+        "illuminate/support": "~5|~6|~7|~8|~9"
     },
-    "require-dev": [],
     "autoload": {
         "psr-4": {
             "AwemaPL\\BaseJS\\": "src/"

@@ -33,8 +33,8 @@ abstract class AwemaProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            $this->getPath().'/../dist' => public_path("static/{$this->getPackageName()}"),
-        ], 'awema-public');
+            $this->getPath().'/../dist' => public_path("assets/awema-pl/{$this->getPackageName()}"),
+        ], 'awema-pl-public');
 
         $this->loadViewsFrom($this->getPath().'/../resources/views', $this->getPackageName());
 

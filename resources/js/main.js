@@ -128,12 +128,12 @@ function init() {
                 AWEMA._inited = true
 
                 // validate key
-                validateKey(AWEMA._config.key)
-                    .then( result => {
-                        Object.defineProperty(AWEMA, '_keyValid', {
-                            value: result
-                        })
-                    })
+                // validateKey(AWEMA._config.key)
+                //     .then( result => {
+                //         Object.defineProperty(AWEMA, '_keyValid', {
+                //             value: result
+                //         })
+                //     })
 
                 // load deferred plugins
                 if ( window[stack] && window[stack].length ) {

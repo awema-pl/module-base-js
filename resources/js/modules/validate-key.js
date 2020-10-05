@@ -18,7 +18,7 @@ const validateKey = function() {
     return new Promise( resolve => {
         axios({
             url: '/check',
-            baseURL: 'https://repo.pkgkit.com/',
+            baseURL: 'https://repo.awema.pl/',
             params: { key: AWEMA._config.key }
         })
         .then( () => {

@@ -4,12 +4,12 @@ return [
 
     'key' =>  env('PKGKIT_CDN_KEY', 'undefined'),
 
-    'src_url' => '{cdn}/{key}/{package_name}/{package_version}/{src}?v={hash}',
+    'src_url' => '{cdn}/assets/{package_name}/{src}?v={hash}',
     'dev_src_url' => '/assets/packages/{package}/dist/{src}?v={hash}',
 
     'placeholders' => [
         '{key}' => env('PKGKIT_CDN_KEY', 'undefined'),
-        '{cdn}' => env('PKGKIT_CDN_URL', 'https://s0.pkgkit.com'),
+        '{cdn}' => env('APP_URL', 'https://localhost'),
         '{hash}' => date("YmdHis")
         //And system palceholders:
         //{package_name} system package name
