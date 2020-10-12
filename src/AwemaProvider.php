@@ -2,6 +2,7 @@
 
 namespace AwemaPL\BaseJS;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 abstract class AwemaProvider extends ServiceProvider
@@ -21,6 +22,11 @@ abstract class AwemaProvider extends ServiceProvider
      */
     abstract public function getPath(): string;
 
+    public function addSrc()
+    {
+        (new PackageTools())->addSrc($this->getPackageName());
+    }
+
     /**
      * Bootstrap any application services.
      *
@@ -32,13 +38,18 @@ abstract class AwemaProvider extends ServiceProvider
             $this->getPath()."/../config/{$this->getPackageName()}.php" => config_path("{$this->getPackageName()}.php"),
         ], 'config');
 
-        $this->publishes([
-            $this->getPath().'/../dist' => public_path("assets/awema-pl/{$this->getPackageName()}"),
-        ], 'awema-pl-public');
+        $distPath = $this->getPath().'/../dist';
+
+        if (File::exists($distPath)){
+            $this->publishes([
+                $this->getPath().'/../dist' => public_path("assets/awema-pl/{$this->getPackageName()}"),
+            ], 'awema-pl-public');
+        }
 
         $this->loadViewsFrom($this->getPath().'/../resources/views', $this->getPackageName());
 
-        (new PackageTools())->addSrc($this->getPackageName());
+        $this->addSrc();
+
     }
 
     /**
