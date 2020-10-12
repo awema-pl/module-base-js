@@ -1,6 +1,6 @@
 {
     "name": "awema-pl/module-base-js",
-    "description": ":description",
+    "description": "Base for modules Awema.",
     "type": "library",
     "license": "MIT",
     "authors": [
