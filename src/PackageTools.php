@@ -3,6 +3,7 @@
 namespace AwemaPL\BaseJS;
 
 use Composer\Console\Application;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
@@ -23,6 +24,10 @@ class PackageTools
      */
     public function addSrc($package): void
     {
+        if (config('base-js.auto_public_src')){
+            $this->copySrcToPublic($package, 'css');
+            $this->copySrcToPublic($package, 'js');
+        }
 
         $packageNamespace = "awema-pl/$package";
 
@@ -52,6 +57,7 @@ class PackageTools
             }
             Cache::forever($packageNamespace, $srcs);
         }
+
 
         View::composer('*', function ($view) use ($srcs) {
             $viewData = $view->getData('src');
@@ -161,6 +167,28 @@ class PackageTools
             }
         }
         return $out;
+    }
+
+    /**
+     * Copy src to public
+     *
+     * @param $package
+     * @param string $type
+     */
+    public function copySrcToPublic($package, $type = 'css')
+    {
+        $path = base_path("vendor/awema-pl/module-$package/dist/$type/main.$type");
+        if (File::exists($path)){
+
+            $publicPath = public_path("assets/awema-pl/$package/$type/main.$type");
+            if (!File::exists($publicPath) || (File::size($path) !==File::size($publicPath) )){
+                $dir = dirname($publicPath);
+                if (!File::exists($dir)){
+                    mkdir($dir, 0777, true);
+                }
+                File::copy($path, $publicPath);
+            }
+        }
     }
 
 }

@@ -19,5 +19,10 @@ return [
     //Redefined
     'dist' => [
         'js/main.js'
-    ]
+    ],
+
+    // copty js and css files from dist directory of module
+    // to public/assets/awema-pl directory
+    'auto_public_src' => true,
+
 ];
