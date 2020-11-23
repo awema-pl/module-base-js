@@ -160,3 +160,20 @@ export function parseQuery(queryStr) {
 
     return parsed
 }
+
+
+/**
+ * Url with only query for example Table-builder
+ *
+ * @param  {String}  url            - url template
+ * @param  {Object}  onlyQuery      - only query
+ * @param  {Object}  data           - data object with params
+ *
+ * @return {String}           - replaced url
+ *
+ */
+
+export function urlFromOnlyQuery(url, onlyQuery, data) {
+    const queryStr = url + '?{' + onlyQuery.join('}&{') + '}'
+    return urlFromTemplate(queryStr, data)
+}

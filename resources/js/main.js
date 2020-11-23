@@ -23,6 +23,7 @@ import { sharedStore, routerConfig, setParam } from './modules/vue-app'
 import { watchedNames, createComponents, updateComponents, initOnScroll} from './modules/observer'
 import getPolyfills, * as hasSupport from './utils/support.js'
 import contentWrapper from '../vue/content-wrapper.vue'
+import lodash from 'lodash'
 
 function init() {
 
@@ -43,7 +44,9 @@ function init() {
             } else {
                 alert( String(payload) )
             }
-        }
+        },
+
+        
     }
 
     wrapConfig(AWEMA)
@@ -61,7 +64,8 @@ function init() {
         ...urlUtils,
         ...metaUtils,
         object: objectUtils,
-        support: hasSupport
+        support: hasSupport,
+        lodash: lodash,
     })
 
     // vue
@@ -70,6 +74,7 @@ function init() {
     window.Vue = Vue
     Vue.prototype.AWEMA = AWEMA
     Vue.prototype.$get = objectUtils.get
+    Vue.prototype.$lodash = lodash
     Vue.prototype.$url = {
         ...urlUtils,
         urlify: Urlify.create(AWEMA._config.urlify)

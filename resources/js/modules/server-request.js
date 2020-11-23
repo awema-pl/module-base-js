@@ -30,6 +30,8 @@ export function serverRequest(params = {}, url, method = 'post') {
     return new Promise( resolve => {
 
         let redirect
+        let showModal
+
         const serverResponse = {
             success: true
         };
@@ -40,15 +42,24 @@ export function serverRequest(params = {}, url, method = 'post') {
                 // check for redirect
                 redirect = get(response, 'data.redirectUrl')
 
-                // show server sent message if no redirect provided
-                if ( ! redirect ) {
-                    let message = get(response, 'data.message')
-                    if ( message ) {
-                        AWEMA.notify({
-                            status: 'success',
-                            message: response.data.message
-                        });
-                    }
+                // check for show modal
+                showModal = get(response, 'data.showModal')
+
+               let message = get(response, 'data.message');
+                if (message) {
+                    AWEMA.notify({
+                        status: 'success',
+                        message: message
+                    });
+                } else if (showModal){
+                    let modalName = get(response, 'data.showModal.modalName')
+                    let storeDataParam = get(response, 'data.showModal.storeDataParam')
+                    let storeData = get(response, 'data.showModal.storeData')
+                    setTimeout( () => {
+                        AWEMA._store.commit('setData', {param: storeDataParam, data: storeData});
+                        AWEMA.emit('modal::'+modalName+':open');
+                    }, 0)
+
                 }
 
                 serverResponse.data = response.data
@@ -94,8 +105,11 @@ export function serverRequest(params = {}, url, method = 'post') {
 
                 clearTimeout(timer);
 
-                if (redirect) {
+                if (showModal){
+                    resolve( serverResponse )
+                } else if (redirect) {
                     window.location.href = redirect
+                    resolve( serverResponse )
                 } else {
                     resolve( serverResponse )
 

@@ -15,20 +15,20 @@ const isDev = process.env.NODE_ENV === 'development'
  */
 
 if ( isDev ) {
-  gulp.task('serve', function(){
+    gulp.task('serve', function(){
 
-    browserSync.init({
-      ui: false,
-      open: false,
-      notify: false,
-      server: ['./examples', './dist']
+        browserSync.init({
+            ui: false,
+            open: false,
+            notify: false,
+            server: ['./examples', './dist']
+        })
+
+        gulp.watch(['./resources/js/**/*.js', './resources/vue/**/*.vue'], gulp.series('build:js', 'reload'))
+        gulp.watch('./examples/**/*.html', gulp.series('reload'))
     })
 
-    gulp.watch(['./resources/js/**/*.js', './resources/vue/**/*.vue'], gulp.series('build:js', 'reload'))
-    gulp.watch('./examples/**/*.html', gulp.series('reload'))
-  })
-
-  gulp.task('reload', function(done) { browserSync.reload(); done() })
+    gulp.task('reload', function(done) { browserSync.reload(); done() })
 }
 
 
@@ -40,14 +40,14 @@ const rollupConfig = require('./rollup.config.js')
 rollupConfig.rollup = require('rollup')
 rollupConfig.allowRealFiles = true, // solves gulp-rollup hipotetical file system problem
 
-gulp.task('build:js', function(){
-  return gulp.src('./resources/js/main.js')
-    .pipe( plumber() )
-    .pipe( isDev ? sourcemaps.init() : noop() )
-    .pipe( rollup(rollupConfig) )
-    .pipe( isDev ? sourcemaps.write() : noop() )
-    .pipe( gulp.dest('./dist/js') )
-})
+    gulp.task('build:js', function(){
+        return gulp.src('./resources/js/main.js')
+            .pipe( plumber() )
+            .pipe( isDev ? sourcemaps.init() : noop() )
+            .pipe( rollup(rollupConfig) )
+            .pipe( isDev ? sourcemaps.write() : noop() )
+            .pipe( gulp.dest('./dist/js') )
+    })
 
 
 /*
@@ -55,8 +55,8 @@ gulp.task('build:js', function(){
  */
 
 gulp.task('clean', function(){
-  return gulp.src('./dist', { read: false, allowEmpty: true })
-    .pipe( clean() )
+    return gulp.src('./dist', { read: false, allowEmpty: true })
+        .pipe( clean() )
 })
 
 gulp.task('build', gulp.series('build:js') )

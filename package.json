@@ -23,9 +23,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "axios": "^0.19.0",
+        "axios": "^0.19.2",
         "dayjs": "^1.8.14",
         "loadjs": "^3.5.5",
+        "lodash": "^4.17.20",
         "urlify": "^0.3.6",
         "v-tooltip": "^2.0.2",
         "vue": "^2.6.10",
@@ -38,7 +39,7 @@
         "@babel/preset-env": "^7.2.3",
         "autoprefixer": "^9.4.5",
         "browser-sync": "^2.26.3",
-        "core-js": "^2.6.2",
+        "core-js": "2",
         "cross-env": "^5.2.0",
         "cssnano": "^4.1.8",
         "gulp": "^4.0.0",
