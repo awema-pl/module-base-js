@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "axios": "^0.19.2",
-        "clipboard": "^2.0.6",
+        "copy-to-clipboard": "^3.3.1",
         "dayjs": "^1.8.14",
         "loadjs": "^3.5.5",
         "lodash": "^4.17.20",
