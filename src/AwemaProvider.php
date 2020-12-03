@@ -3,9 +3,9 @@
 namespace AwemaPL\BaseJS;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 
-abstract class AwemaProvider extends ServiceProvider
+abstract class AwemaProvider extends AuthServiceProvider
 {
 
     /**

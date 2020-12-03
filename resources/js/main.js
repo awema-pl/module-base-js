@@ -24,6 +24,7 @@ import { watchedNames, createComponents, updateComponents, initOnScroll} from '.
 import getPolyfills, * as hasSupport from './utils/support.js'
 import contentWrapper from '../vue/content-wrapper.vue'
 import lodash from 'lodash'
+import ClipboardJS from 'clipboard/src/clipboard.js'
 
 function init() {
 
@@ -175,6 +176,12 @@ function init() {
                     childList: true,
                     subtree: true
                 })
+
+                if (AWEMA._config.notifyMessage){
+                    AWEMA.notify(AWEMA._config.notifyMessage);
+                }
+
+                new ClipboardJS('.copy_to_clipboard');
                 
                 AWEMA.emit('core:inited')
                 

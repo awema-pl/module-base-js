@@ -10,3 +10,20 @@ if (!function_exists('notify')) {
         return array_filter(compact('message', 'data'));
     }
 }
+
+if (!function_exists('notifyMessage')) {
+
+    /**
+     * Flash notify message
+     *
+     */
+    function notifyMessage($message, $config = [])
+    {
+        $defaultConfig = [
+            'status'=>'success'
+        ];
+        $config = array_merge($defaultConfig, $config);
+        $config['message'] = $message;
+        session()->flash('notifyMessage', $config);
+    }
+}
