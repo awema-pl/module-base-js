@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\StreamOutput;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Class PackageTools
@@ -25,8 +26,7 @@ class PackageTools
     public function addSrc($package): void
     {
         if (config('base-js.auto_public_src')){
-            $this->copySrcToPublic($package, 'css');
-            $this->copySrcToPublic($package, 'js');
+            $this->copyDistToPublic($package);
         }
 
         $packageNamespace = "awema-pl/$package";
@@ -170,23 +170,24 @@ class PackageTools
     }
 
     /**
-     * Copy src to public
+     * Copy dist to public
      *
      * @param $package
      * @param string $type
      */
-    public function copySrcToPublic($package, $type = 'css')
+    public function copyDistToPublic($package)
     {
-        $path = base_path("vendor/awema-pl/module-$package/dist/$type/main.$type");
-        if (File::exists($path)){
-
-            $publicPath = public_path("assets/awema-pl/$package/$type/main.$type");
-            if (!File::exists($publicPath) || (File::size($path) !==File::size($publicPath) )){
-                $dir = dirname($publicPath);
-                if (!File::exists($dir)){
-                    mkdir($dir, 0777, true);
-                }
+        $distDir = base_path("vendor/awema-pl/module-$package/dist");
+        $files = (new Finder())->in($distDir);
+        foreach ($files as $file){
+            $relativePath = $file->getRelativePathname();
+            $path = $file->getRealPath();
+            $publicPath  = public_path("assets/awema-pl/$package/$relativePath");
+            if ($file->isDir() && !File::exists($publicPath)){
+                mkdir($publicPath, 0777, true);
+            } else if ($file->isFile() && (!File::exists($publicPath) || hash_file('md5',$path) !==hash_file('md5',$publicPath) )){
                 File::copy($path, $publicPath);
+                dump('copy');
             }
         }
     }
