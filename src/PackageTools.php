@@ -187,7 +187,6 @@ class PackageTools
                 mkdir($publicPath, 0777, true);
             } else if ($file->isFile() && (!File::exists($publicPath) || hash_file('md5',$path) !==hash_file('md5',$publicPath) )){
                 File::copy($path, $publicPath);
-                dump('copy');
             }
         }
     }
