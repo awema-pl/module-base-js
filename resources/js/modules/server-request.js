@@ -31,6 +31,8 @@ export function serverRequest(params = {}, url, method = 'post') {
 
         let redirect
         let showModal
+        let setData
+
 
         const serverResponse = {
             success: true
@@ -45,6 +47,9 @@ export function serverRequest(params = {}, url, method = 'post') {
                 // check for show modal
                 showModal = get(response, 'data.showModal')
 
+                // check for set data
+                setData = get(response, 'data.setData')
+
                let message = get(response, 'data.message');
                 if (message) {
                     AWEMA.notify({
@@ -58,6 +63,14 @@ export function serverRequest(params = {}, url, method = 'post') {
                     setTimeout( () => {
                         AWEMA._store.commit('setData', {param: storeDataParam, data: storeData});
                         AWEMA.emit('modal::'+modalName+':open');
+                    }, 0)
+
+                }
+                else if (setData){
+                    let storeDataParam = get(response, 'data.setData.storeDataParam')
+                    let storeData = get(response, 'data.setData.storeData')
+                    setTimeout( () => {
+                        AWEMA._store.commit('setData', {param: storeDataParam, data: storeData});
                     }, 0)
 
                 }
@@ -105,7 +118,9 @@ export function serverRequest(params = {}, url, method = 'post') {
 
                 clearTimeout(timer);
 
-                if (showModal){
+                if (showModal) {
+                    resolve(serverResponse)
+                } else if (setData){
                     resolve( serverResponse )
                 } else if (redirect) {
                     window.location.href = redirect
