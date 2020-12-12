@@ -21,6 +21,7 @@
     ],
     "require": {
         "composer/composer": "^1.8",
+        "cerbero/exception-handler": "^3.0",
         "illuminate/support": "~5|~6|~7|~8|~9"
     },
     "autoload": {
