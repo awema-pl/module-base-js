@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 
 abstract class AwemaProvider extends AuthServiceProvider
 {
-
     /**
      * Return package name
      *
