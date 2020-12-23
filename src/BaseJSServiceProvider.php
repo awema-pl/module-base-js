@@ -26,7 +26,7 @@ class BaseJSServiceProvider extends AwemaProvider
                     'userMessage' =>$e->getErrorUserMessage(),
                     'details' =>$e->getErrorDetails(),
                 ]
-            ], $e->getErrorHttpStatus());
+            ], $e->getErrorHttpStatus(), ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
         });
 
         // register a custom reporter to log all exceptions that are instances of - or extend - DebugException

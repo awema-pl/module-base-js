@@ -26,7 +26,7 @@ class PublicException extends Exception implements PublicExceptionContract
             'status' =>$errorHttpStatus,
             'userMessage' =>$errorUserMessage,
             'details' =>$errorDetails,
-        ]), 0, $previous);
+        ]), JSON_UNESCAPED_UNICODE, $previous);
         $this->errorMessage = $errorMessage;
         $this->errorCode = $errorCode;
         $this->errorHttpStatus = $errorHttpStatus;

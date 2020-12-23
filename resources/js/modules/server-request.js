@@ -91,12 +91,15 @@ export function serverRequest(params = {}, url, method = 'post') {
 
                 // check which message to show
                 let message = get(error, 'response.data.message')
+                    || get(error, 'response.data.error.userMessage')
+                    || get(error, 'response.data.error.message')
 
                 // error from response
                 if ( message ) {
                     AWEMA.notify({
                         status: 'error',
-                        message
+                        message,
+                        timeout: 10000,
                     });
 
                 // error from Error object
