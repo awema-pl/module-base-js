@@ -1,6 +1,6 @@
 /**
  * Bundle of AWEMA base-js
- * Generated: 2020-12-21 14:55:54
+ * Generated: 2021-01-04 09:03:15
  * Version: 1.8.1
  */
 
