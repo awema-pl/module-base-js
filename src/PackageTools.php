@@ -22,11 +22,12 @@ class PackageTools
      * Add src config array to all views template
      *
      * @param $package
+     * @param null $distDir
      */
-    public function addSrc($package): void
+    public function addSrc($package, $distDir = null): void
     {
         if (config('base-js.auto_public_src')){
-            $this->copyDistToPublic($package);
+            $this->copyDistToPublic($package, $distDir);
         }
 
         $packageNamespace = "awema-pl/$package";
@@ -173,11 +174,11 @@ class PackageTools
      * Copy dist to public
      *
      * @param $package
-     * @param string $type
+     * @param null $distDir
      */
-    public function copyDistToPublic($package)
+    public function copyDistToPublic($package, $distDir = null)
     {
-        $distDir = base_path("vendor/awema-pl/module-$package/dist");
+        $distDir = $distDir ?? base_path("vendor/awema-pl/module-$package/dist");
         $files = (new Finder())->in($distDir);
         foreach ($files as $file){
             $relativePath = $file->getRelativePathname();
